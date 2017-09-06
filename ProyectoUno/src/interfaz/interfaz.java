@@ -6,6 +6,7 @@
 package interfaz;
 
 import java.awt.Color;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,13 +15,15 @@ import javax.swing.JOptionPane;
  */
 public class interfaz extends javax.swing.JFrame {
 
+    private int turno;
+    private String color1, color2;
+
     /**
      * Creates new form interfaz
      */
     public interfaz() {
+        turno=0;
         initComponents();
-        
-        
         this.setLocationRelativeTo(this);
     }
 
@@ -153,43 +156,48 @@ public class interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
-        JOptionPane.showMessageDialog(null, "1,1");
-        colores color=new colores();
-        //btn11.setBackground(color.getColor(1));
-      
-        
+        //JOptionPane.showMessageDialog(null, "1,1");
+        color(btn11);
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
-        JOptionPane.showMessageDialog(null, "2,1");
+        //JOptionPane.showMessageDialog(null, "2,1");
+        color(btn21);
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
-        JOptionPane.showMessageDialog(null, "3,1");
+        //JOptionPane.showMessageDialog(null, "3,1");
+        color(btn31);
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
-        JOptionPane.showMessageDialog(null, "1,2");
+        //JOptionPane.showMessageDialog(null, "1,2");
+        color(btn12);
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
-        JOptionPane.showMessageDialog(null, "2,2");
+        //JOptionPane.showMessageDialog(null, "2,2");
+        color(btn22);
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
-        JOptionPane.showMessageDialog(null, "3,2");
+        //JOptionPane.showMessageDialog(null, "3,2");
+        color(btn32);
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
-        JOptionPane.showMessageDialog(null, "1,3");
+        //JOptionPane.showMessageDialog(null, "1,3");
+        color(btn13);
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
-        JOptionPane.showMessageDialog(null, "2,3");
+        //JOptionPane.showMessageDialog(null, "2,3");
+        color(btn23);
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
-        JOptionPane.showMessageDialog(null, "3,3");
+        //JOptionPane.showMessageDialog(null, "3,3");
+        color(btn33);
     }//GEN-LAST:event_btn33ActionPerformed
 
     /**
@@ -239,4 +247,42 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JButton btn32;
     private javax.swing.JButton btn33;
     // End of variables declaration//GEN-END:variables
+
+    void configurar(String color1, String color2) {
+        this.color1=color1;
+        this.color2=color2;
+    }
+
+    private void color(JButton btn) {
+        turno++;
+        if(turno%2!=0){
+            pintar(btn,color1);
+            
+        }else{
+            pintar(btn,color2);
+        }
+    }
+
+    private void pintar(JButton btn,String color) {
+        switch (color) {
+                case "Rojo":
+                    btn.setBackground(Color.RED);
+                    break;
+                case "Azul":
+                    btn.setBackground(Color.BLUE);
+                    break;
+                case "Negro":
+                    btn.setBackground(Color.BLACK);
+                    break;
+                case "Verde":
+                    btn.setBackground(Color.GREEN);
+                    break;
+                case "Amarillo":
+                    btn.setBackground(Color.YELLOW);
+                    break;
+                case "Blanco":
+                    btn.setBackground(Color.WHITE);
+                    break;
+            }
+    }
 }

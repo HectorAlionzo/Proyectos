@@ -5,19 +5,26 @@
  */
 package interfaz;
 
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Francisco
  */
 public class inicio extends javax.swing.JFrame {
 
+    String color1,color2;
     /**
      * Creates new form inicio
      */
     public inicio() {
-        
         initComponents();
         this.setLocationRelativeTo(this);
+        cargarCombo();
+        cargarCombo2();
     }
 
     /**
@@ -32,9 +39,9 @@ public class inicio extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        jugador2 = new javax.swing.JComboBox<>();
+        jugador1 = new javax.swing.JComboBox<>();
+        iniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(420, 250));
@@ -55,29 +62,38 @@ public class inicio extends javax.swing.JFrame {
         jLabel3.setText("Jugador 2");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, 30));
+        jugador2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 120, 170, 30));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        getContentPane().add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 170, 30));
+        jugador1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 170, 30));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Iniciar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        iniciar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        iniciar.setText("Iniciar");
+        iniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                iniciarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
+        getContentPane().add(iniciar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 180, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_iniciarActionPerformed
         // TODO add your handling code here:
-        new interfaz().setVisible(true);
+        color1=jugador1.getSelectedItem().toString();
+        color2=jugador2.getSelectedItem().toString();
+        if(color1==color2){
+            JOptionPane.showMessageDialog(this, "No pueden elegir el mismo color ambos jugadores");
+            jugador2.requestFocus(); 
+            return;}
+        
+        interfaz a = new interfaz();
+        a.configurar(color1, color2);
+        a.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_iniciarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,11 +131,43 @@ public class inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton iniciar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JComboBox<String> jugador1;
+    private javax.swing.JComboBox<String> jugador2;
     // End of variables declaration//GEN-END:variables
+    public void cargarCombo(){
+       // Se cargan los catalogos en los combo
+       colores oColor = new colores();
+       DefaultComboBoxModel datos_color = new DefaultComboBoxModel();
+       Vector items_grupo = new Vector();
+       datos_color.removeAllElements();
+       items_grupo.removeAllElements();
+        
+       items_grupo.addAll(oColor.Lista());
+        
+       for (int i = 0; i < items_grupo.size(); i++)
+       {
+         datos_color.addElement(items_grupo.get(i));
+       }
+       jugador1.setModel(datos_color);
+   }
+    public void cargarCombo2(){
+       // Se cargan los catalogos en los combo
+       colores oColor = new colores();
+       DefaultComboBoxModel datos_color = new DefaultComboBoxModel();
+       Vector items_grupo = new Vector();
+       datos_color.removeAllElements();
+       items_grupo.removeAllElements();
+        
+       items_grupo.addAll(oColor.Lista());
+        
+       for (int i = 0; i < items_grupo.size(); i++)
+       {
+         datos_color.addElement(items_grupo.get(i));
+       }
+       jugador2.setModel(datos_color);
+   }
 }

@@ -6,6 +6,10 @@
 package interfaz;
 
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Vector;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,12 +20,27 @@ public class colores {
     String color1;
     String color2;
     void color(){
+         
         Inicializar();
+        
     }
      private void Inicializar() {
+        
         color1="";
         color2="";
     }
+    public Vector Lista(){
+        Vector al = new Vector();
+        // Añadir elementos a un ArrayList
+        al.add("Rojo");
+        al.add("Azul");
+        al.add("Negro");
+        al.add("Verde");
+        al.add("Amarillo");
+        al.add("Blanco");
+        return(al);
+    } // Del mÈtodo 
+
     public void setAcademiaColor(String color1, String color2)
     {
         this.color1= color1;
