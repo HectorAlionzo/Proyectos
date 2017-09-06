@@ -45,6 +45,7 @@ public class interfaz extends javax.swing.JFrame {
         btn13 = new javax.swing.JButton();
         btn23 = new javax.swing.JButton();
         btn33 = new javax.swing.JButton();
+        btnreiniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -103,6 +104,13 @@ public class interfaz extends javax.swing.JFrame {
             }
         });
 
+        btnreiniciar.setText("Reiniciar");
+        btnreiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnreiniciarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -123,13 +131,15 @@ public class interfaz extends javax.swing.JFrame {
                     .addComponent(btn13, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                     .addComponent(btn23, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn33, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnreiniciar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btn13, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
@@ -148,7 +158,8 @@ public class interfaz extends javax.swing.JFrame {
                         .addGap(65, 65, 65)
                         .addComponent(btn21, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(11, 11, 11)
-                        .addComponent(btn31, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn31, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnreiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -200,6 +211,20 @@ public class interfaz extends javax.swing.JFrame {
         color(btn33);
     }//GEN-LAST:event_btn33ActionPerformed
 
+    private void btnreiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreiniciarActionPerformed
+        // TODO add your handling code here:
+        btn11.setBackground(Color.LIGHT_GRAY);
+        btn12.setBackground(Color.LIGHT_GRAY);
+        btn13.setBackground(Color.LIGHT_GRAY);
+        btn21.setBackground(Color.LIGHT_GRAY);
+        btn22.setBackground(Color.LIGHT_GRAY);
+        btn23.setBackground(Color.LIGHT_GRAY);
+        btn31.setBackground(Color.LIGHT_GRAY);
+        btn32.setBackground(Color.LIGHT_GRAY);
+        btn33.setBackground(Color.LIGHT_GRAY);
+        turno=0;
+    }//GEN-LAST:event_btnreiniciarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -246,9 +271,11 @@ public class interfaz extends javax.swing.JFrame {
     private javax.swing.JButton btn31;
     private javax.swing.JButton btn32;
     private javax.swing.JButton btn33;
+    private javax.swing.JButton btnreiniciar;
     // End of variables declaration//GEN-END:variables
 
     void configurar(String color1, String color2) {
+        btnreiniciar.setBackground(Color.CYAN);
         this.color1=color1;
         this.color2=color2;
     }
