@@ -17,6 +17,7 @@ public class interfaz extends javax.swing.JFrame {
 
     private int turno;
     private String color1, color2;
+    int[][] matriz = {{0,0,0},{0,0,0},{0,0,0}};
 
     /**
      * Creates new form interfaz
@@ -168,47 +169,47 @@ public class interfaz extends javax.swing.JFrame {
 
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
         //JOptionPane.showMessageDialog(null, "1,1");
-        color(btn11);
+        color(btn11,0,0);
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
         //JOptionPane.showMessageDialog(null, "2,1");
-        color(btn21);
+        color(btn21,1,0);
     }//GEN-LAST:event_btn21ActionPerformed
 
     private void btn31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn31ActionPerformed
         //JOptionPane.showMessageDialog(null, "3,1");
-        color(btn31);
+        color(btn31,2,0);
     }//GEN-LAST:event_btn31ActionPerformed
 
     private void btn12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn12ActionPerformed
         //JOptionPane.showMessageDialog(null, "1,2");
-        color(btn12);
+        color(btn12,0,1);
     }//GEN-LAST:event_btn12ActionPerformed
 
     private void btn22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn22ActionPerformed
         //JOptionPane.showMessageDialog(null, "2,2");
-        color(btn22);
+        color(btn22,1,1);
     }//GEN-LAST:event_btn22ActionPerformed
 
     private void btn32ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn32ActionPerformed
         //JOptionPane.showMessageDialog(null, "3,2");
-        color(btn32);
+        color(btn32,2,1);
     }//GEN-LAST:event_btn32ActionPerformed
 
     private void btn13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn13ActionPerformed
         //JOptionPane.showMessageDialog(null, "1,3");
-        color(btn13);
+        color(btn13,0,2);
     }//GEN-LAST:event_btn13ActionPerformed
 
     private void btn23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn23ActionPerformed
         //JOptionPane.showMessageDialog(null, "2,3");
-        color(btn23);
+        color(btn23,1,2);
     }//GEN-LAST:event_btn23ActionPerformed
 
     private void btn33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn33ActionPerformed
         //JOptionPane.showMessageDialog(null, "3,3");
-        color(btn33);
+        color(btn33,2,2);
     }//GEN-LAST:event_btn33ActionPerformed
 
     private void btnreiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreiniciarActionPerformed
@@ -280,17 +281,18 @@ public class interfaz extends javax.swing.JFrame {
         this.color2=color2;
     }
 
-    private void color(JButton btn) {
+    private void color(JButton btn, int i, int j) {
         turno++;
         if(turno%2!=0){
-            pintar(btn,color1);
-            
+            colorear(btn,color1);
+            llenar(1,i,j);
         }else{
-            pintar(btn,color2);
+            colorear(btn,color2);
+            llenar(2,i,j);
         }
     }
 
-    private void pintar(JButton btn,String color) {
+    private void colorear(JButton btn,String color) {
         switch (color) {
                 case "Rojo":
                     btn.setBackground(Color.RED);
@@ -311,5 +313,19 @@ public class interfaz extends javax.swing.JFrame {
                     btn.setBackground(Color.WHITE);
                     break;
             }
+    }
+
+    private void llenar(int jugador, int i, int j) {
+        
+        matriz[i][j]=jugador;
+        String fila="";
+        for(i=0; i<3; i++){
+            for(j=0; j<3; j++){
+                System.out.print(matriz[i][j]+" ");
+            }
+            System.out.print("\n");
+        }
+        System.out.print("-----");
+        System.out.print("\n");
     }
 }
