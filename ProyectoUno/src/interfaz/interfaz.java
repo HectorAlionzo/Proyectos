@@ -17,7 +17,7 @@ public class interfaz extends javax.swing.JFrame {
 
     private int turno;
     private String color1, color2;
-    int[][] matriz = {{0,0,0},{0,0,0},{0,0,0}};
+    int[][] matriz = {{0,0,0},{0,0,0},{0,0,0}};;
 
     /**
      * Creates new form interfaz
@@ -49,6 +49,7 @@ public class interfaz extends javax.swing.JFrame {
         btnreiniciar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("cuadro");
         setResizable(false);
 
         btn11.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +106,7 @@ public class interfaz extends javax.swing.JFrame {
             }
         });
 
+        btnreiniciar.setBackground(new java.awt.Color(0, 204, 102));
         btnreiniciar.setText("Reiniciar");
         btnreiniciar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,15 +216,16 @@ public class interfaz extends javax.swing.JFrame {
 
     private void btnreiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreiniciarActionPerformed
         // TODO add your handling code here:
-        btn11.setBackground(Color.LIGHT_GRAY);
-        btn12.setBackground(Color.LIGHT_GRAY);
-        btn13.setBackground(Color.LIGHT_GRAY);
-        btn21.setBackground(Color.LIGHT_GRAY);
-        btn22.setBackground(Color.LIGHT_GRAY);
-        btn23.setBackground(Color.LIGHT_GRAY);
-        btn31.setBackground(Color.LIGHT_GRAY);
-        btn32.setBackground(Color.LIGHT_GRAY);
-        btn33.setBackground(Color.LIGHT_GRAY);
+        btn11.setBackground(Color.getColor("-2696737"));
+        btn12.setBackground(Color.getColor("-2696737"));
+        btn13.setBackground(Color.getColor("-2696737"));
+        btn21.setBackground(Color.getColor("-2696737"));
+        btn22.setBackground(Color.getColor("-2696737"));
+        btn23.setBackground(Color.getColor("-2696737"));
+        btn31.setBackground(Color.getColor("-2696737"));
+        btn32.setBackground(Color.getColor("-2696737"));
+        btn33.setBackground(Color.getColor("-2696737"));
+        reiniciarMatriz();
         turno=0;
     }//GEN-LAST:event_btnreiniciarActionPerformed
 
@@ -276,20 +279,27 @@ public class interfaz extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     void configurar(String color1, String color2) {
-        btnreiniciar.setBackground(Color.CYAN);
         this.color1=color1;
         this.color2=color2;
     }
 
     private void color(JButton btn, int i, int j) {
-        turno++;
-        if(turno%2!=0){
-            colorear(btn,color1);
-            llenar(1,i,j);
-        }else{
-            colorear(btn,color2);
-            llenar(2,i,j);
+        if(btn.getBackground().getRGB()==-2696737){
+            turno++;
+            if(turno%2!=0){
+                colorear(btn,color1);
+                llenar(1,i,j);
+                if(turno>4)
+                    verificar(1);
+            }else{
+                colorear(btn,color2);
+                llenar(2,i,j);
+                if(turno>4)
+                    verificar(2);
+            }
+            
         }
+        
     }
 
     private void colorear(JButton btn,String color) {
@@ -318,7 +328,6 @@ public class interfaz extends javax.swing.JFrame {
     private void llenar(int jugador, int i, int j) {
         
         matriz[i][j]=jugador;
-        String fila="";
         for(i=0; i<3; i++){
             for(j=0; j<3; j++){
                 System.out.print(matriz[i][j]+" ");
@@ -327,5 +336,41 @@ public class interfaz extends javax.swing.JFrame {
         }
         System.out.print("-----");
         System.out.print("\n");
+    }
+
+    private void reiniciarMatriz() {
+        for(int i=0; i<3; i++){
+            for(int j=0; j<3; j++){
+                matriz[i][j]=0;
+            }
+        }
+    }
+
+    private void verificar(int jugador) {
+        if(matriz[0][0]==matriz[0][1] && matriz[0][1]==matriz[0][2] && matriz[0][2]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[1][0]==matriz[1][1] && matriz[1][1]==matriz[1][2] && matriz[1][2]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[2][0]==matriz[2][1] && matriz[2][1]==matriz[2][2] && matriz[2][2]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[0][0]==matriz[1][0] && matriz[1][0]==matriz[2][0] && matriz[2][0]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[0][1]==matriz[1][1] && matriz[1][1]==matriz[2][1] && matriz[2][1]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[0][2]==matriz[1][2] && matriz[1][2]==matriz[2][2] && matriz[2][2]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        
+        if(matriz[0][0]==matriz[1][1] && matriz[1][1]==matriz[2][2] && matriz[2][2]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
+        if(matriz[0][2]==matriz[1][1] && matriz[1][1]==matriz[2][0] && matriz[2][0]==jugador){
+            JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
+        }
     }
 }
