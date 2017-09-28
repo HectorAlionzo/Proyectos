@@ -5,6 +5,8 @@
  */
 package Extras;
 
+import interfaz.Verificacion;
+
 /**
  *
  * @author Lenovo
@@ -36,8 +38,12 @@ int [][] matriz = {{0,0,0},
     public static void main(String[] args) {
        Metodo llam = new Metodo();
       //System.out.println(llam.Llamar(0, 0));
-      int [][] matriz = {{1,0,0},{0,1,0},{0,0,0}};
+      int [][] matriz = {{1,0,0},
+                         {1,2,2},
+                         {0,0,0}};
       llam.Llamar(matriz);
+      Verificacion ver=new Verificacion();
+      ver.verificarPeligro(1, matriz);
        //llam.llenar(1, 0,0);
     }
 }
