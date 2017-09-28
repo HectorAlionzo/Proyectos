@@ -6,6 +6,7 @@
 package interfaz;
 
 import java.awt.Color;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -17,7 +18,7 @@ public class interfaz extends javax.swing.JFrame {
 
     private int turno;
     private String color1, color2;
-    int[][] matriz = {{0,0,0},{0,0,0},{0,0,0}};;
+    int[][] matriz = {{0,0,0},{0,0,0},{0,0,0}};
 
     /**
      * Creates new form interfaz
@@ -172,6 +173,7 @@ public class interfaz extends javax.swing.JFrame {
     private void btn11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn11ActionPerformed
         //JOptionPane.showMessageDialog(null, "1,1");
         color(btn11,0,0);
+        
     }//GEN-LAST:event_btn11ActionPerformed
 
     private void btn21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn21ActionPerformed
@@ -284,24 +286,54 @@ public class interfaz extends javax.swing.JFrame {
     }
 
     private void color(JButton btn, int i, int j) {
+        Verificacion a=new Verificacion();
+        
+        Random numAleatorio = new Random ();
+        numAleatorio.nextInt(2);
+        System.out.println(numAleatorio);
         if(btn.getBackground().getRGB()==-2696737){
             turno++;
             if(turno%2!=0){
                 colorear(btn,color1);
                 llenar(1,i,j);
-                if(turno>4)
+                if(turno>4){
                     verificar(1);
+                }
+                a.verificarPeligro(1, matriz);
             }else{
                 colorear(btn,color2);
                 llenar(2,i,j);
-                if(turno>4)
+                if(turno>4){
                     verificar(2);
+                }
+                a.verificarPeligro(2, matriz);
             }
             
         }
         
     }
-
+    void colorearComputadora(){
+        switch (color1) {
+                case "0,0":
+                    btn11.setBackground(Color.RED);
+                    break;
+                case "0,1":
+                    btn12.setBackground(Color.BLUE);
+                    break;
+                case "Negro":
+                    btn13.setBackground(Color.BLACK);
+                    break;
+                case "Verde":
+                    btn21.setBackground(Color.GREEN);
+                    break;
+                case "Amarillo":
+                    btn22.setBackground(Color.YELLOW);
+                    break;
+                case "Blanco":
+                    btn23.setBackground(Color.WHITE);
+                    break;
+            }
+    }
     private void colorear(JButton btn,String color) {
         switch (color) {
                 case "Rojo":
@@ -347,6 +379,7 @@ public class interfaz extends javax.swing.JFrame {
     }
 
     private void verificar(int jugador) {
+               
         if(matriz[0][0]==matriz[0][1] && matriz[0][1]==matriz[0][2] && matriz[0][2]==jugador){
             JOptionPane.showMessageDialog(this, "El GANADOR es el jugador "+jugador);
         }
